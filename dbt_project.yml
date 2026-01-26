@@ -20,11 +20,11 @@ models:
   nyc_analytics:
 
     staging:
-      +schema: your_staging_schema   # Placeholder schema, replace with your dataset
-      +materialized: table           # Default materialization
+      +schema: your_staging_schema  
+      +materialized: table          
 
     marts:
-      +schema: your_marts_schema     # Placeholder schema, replace with your dataset
+      +schema: your_marts_schema     
       +materialized: table
 
       shared:
