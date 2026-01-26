@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: restaurant_sources # Logical source name
+    database: gcp_project_name 
+    schema: BigQuery_dataset_name       
+    tables:
+      - name: source_restaurant_inspections  # Table name in BigQuery
+        description: "Raw DOHMH NYC restaurant inspection data"
+
+  - name: rodent_sources # Logical name for the rodent complaint source
+    database: gcp_project_name 
+    schema: BigQuery_dataset_name          
+    tables:
+      - name: source_311_rodent_complaints  # Table name in BigQuery
+        description: "Raw NYC 311 rodent complaint data"

@@ -1,0 +1,37 @@
+name: 'nyc_analytics'
+version: '1.0.0'
+config-version: 2
+
+profile: 'default'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  nyc_analytics:
+
+    staging:
+      +schema: your_staging_schema   # Placeholder schema, replace with your dataset
+      +materialized: table           # Default materialization
+
+    marts:
+      +schema: your_marts_schema     # Placeholder schema, replace with your dataset
+      +materialized: table
+
+      shared:
+        +materialized: table
+
+      rodents:
+        +materialized: table
+
+      restaurants:
+        +materialized: table

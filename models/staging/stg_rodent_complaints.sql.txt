@@ -1,0 +1,53 @@
+{{ config(materialized='table') }}
+
+WITH raw AS (
+    SELECT
+        created_date,
+        agency,
+        agency_name,
+        complaint_type,
+        descriptor,
+        location_type,
+        address_type,
+        city,
+        borough,
+        latitude,
+        longitude,
+        community_board,
+        park_borough,
+        x_coordinate_state_plane,
+        y_coordinate_state_plane
+    FROM {{ source('rodent_sources', 'source_311_rodent_complaints') }}
+    WHERE created_date BETWEEN '2022-10-01' AND '2025-12-31'   
+),
+
+cleaned AS (
+    SELECT
+        -- Surrogate key
+        to_hex(md5(cast(
+            coalesce(cast(created_date as string), '_dbt_null_')
+            || '-' || coalesce(cast(descriptor as string), '_dbt_null_')
+            || '-' || coalesce(cast(location_type as string), '_dbt_null_')
+            || '-' || coalesce(cast(address_type as string), '_dbt_null_')
+            || '-' || coalesce(cast(latitude as string), '_dbt_null_')
+            || '-' || coalesce(cast(longitude as string), '_dbt_null_')
+        AS string))) AS rodent_complaint_id,
+
+        r.*,
+
+        -- Convert lat/lon to GEOGRAPHY
+        ST_GEOGPOINT(r.longitude, r.latitude) AS rodent_geog,
+
+        -- ZIP from BigQuery boundaries table
+        z.zip_code AS zipcode
+
+    FROM raw r
+    LEFT JOIN `bigquery-public-data.geo_us_boundaries.zip_codes` z
+        ON ST_WITHIN(
+            ST_GEOGPOINT(r.longitude, r.latitude),
+            z.zip_code_geom
+        )
+)
+
+SELECT *
+FROM cleaned
