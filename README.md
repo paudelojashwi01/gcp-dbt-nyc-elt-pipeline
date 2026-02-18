@@ -15,5 +15,5 @@ This project implements an end to end ELT pipeline using GCP and dbt to integrat
 - DOHMH Restaurant Inspection Results
 
 ## Architecture 
-Coming Soon 
+The warehouse was designed using a Kimball process for query optimization for the particular use cases. 
 
