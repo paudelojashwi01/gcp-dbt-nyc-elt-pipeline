@@ -11,7 +11,6 @@ SOCRATA_HOST = "data.cityofnewyork.us"
 SOCRATA_DATASET_ID = "DATASET_ID"
 CHUNK_SIZE = 5000
 ORDER_BY_FIELD = "created_date"
-SOCRATA_WHERE_CLAUSE = ""
 
 SOCRATA_APP_TOKEN = os.environ.get("SOCRATA_APP_TOKEN")
 
@@ -173,9 +172,6 @@ def ingest_socrata_data(request):
         "$offset": offset,
         "$order": f"{ORDER_BY_FIELD} ASC",
     }
-
-    if SOCRATA_WHERE_CLAUSE:
-        params["$where"] = SOCRATA_WHERE_CLAUSE
 
     print("Fetching with params:", params)
 
