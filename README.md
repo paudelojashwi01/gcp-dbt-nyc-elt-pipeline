@@ -29,10 +29,8 @@ The problem is improving, every borough saw fewer complaints in 2024 than 2023 (
 - **Raw storage:** BigQuery raw tables, minimal transformation and preserves original source structure as a reference point
 - **Transformation (staging):** dbt staging models: clean, filter, cast, and deduplicate the raw data
 - **Transformation (mart):** dbt dimensional mart: following star schema with 2 fact tables (restaurant inspections, rodent complaints) and 6 dimension tables (date, location, restaurant, grade, violation type, location type); shared date/location dimensions let both datasets be analyzed together
-- **Visualization:** Looker Studio:  stakeholder-facing dashboards for DOHMH policymakers, restaurant owners, and residents
-
-<img width="560" height="502" alt="Screenshot 2026-09-12 at 5 47 26 PM" src="https://github.com/user-attachments/assets/018a2d61-664c-4ac9-981a-a01acde42532" />
-
+<img width="560" height="502" alt="Screenshot 2026-09-12 at 5 47 26 PM" src="https://github.com/user-attachments/assets/018a2d61-664c-4ac9-981a-a01acde42532" /> 
+- **Visualization:** Looker Studio:  stakeholder-facing dashboards for DOHMH policymakers, restaurant owners, and resident
 
 
 ## Tech Stack 
