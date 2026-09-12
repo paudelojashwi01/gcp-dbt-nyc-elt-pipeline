@@ -42,7 +42,7 @@ The problem is improving, every borough saw fewer complaints in 2024 than 2023 (
 - Looker Studio 
 
 ## Data Sources 
-- NYC 311 Rodent Complaints 
-- DOHMH Restaurant Inspection Results
+- NYC 311 Rodent Complaints https://data.cityofnewyork.us/Social-Services/311-Rodent-Complaints/cvf2-zn8s/about_data 
+- DOHMH Restaurant Inspection Results https://data.cityofnewyork.us/Health/Restaurant-Inspection-Results/43nn-pn8j  
 
 
